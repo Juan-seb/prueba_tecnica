@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: content-box;
+}
+
+.cross {
+  margin: auto;
+  background-color: black;
+  height: 100vh;
+  position: relative;
+  width: 1px;
+}
+
+.cross:after {
+  background-color: black;
+  content: "";
+  height: 1px;
+  left: -50vw;
+  position: absolute;
+  top: 50vh;
+  width: 100vw;
+}
