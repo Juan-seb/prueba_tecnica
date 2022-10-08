@@ -46,6 +46,8 @@ const InputNames = ({ names, setNames }) => {
     const value = e.target.value
     const regexName = /^[a-zA-Z]+$/
 
+    if (value === '') return
+
     if (!(regexName.test(value))) {
 
       setErrorName(true)
