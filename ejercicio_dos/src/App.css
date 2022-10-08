@@ -1,10 +1,14 @@
 .app{
+  height: 100vh; 
+  padding-left: 13rem;
+  padding-right: 13rem;
+}
+
+.app_container{
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: flex-start;
-  padding-left: 15rem;
-  padding-right: 15rem;
+  padding-top: 2rem;
 }
 
 .app_form{
@@ -14,4 +18,9 @@
 
 .app_li{
   margin-bottom: .5rem;
+}
+
+.app_title{
+  margin-bottom: .5rem;
+  margin-top: .3rem
 }
