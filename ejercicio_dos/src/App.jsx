@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import InputCountry from './components/InputCountry'
 import InputNames from './components/InputNames'
-import ListOfNames from './components/ListOfNames'
+import Loader from './components/Loader'
 import Result from './components/Result'
 import './App.css'
 
@@ -9,7 +9,7 @@ function App() {
 
   const [names, setNames] = useState([])
   const [country, setCountry] = useState('')
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(undefined)
 
   const createUrlNames = (namesToAggregate) => {
 
@@ -40,11 +40,11 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setData(null)
 
     if (names.length === 0) {
       return
     }
+    setData(null)
 
     try {
       const data = await fetch(`https://api.agify.io?${createUrlNames(names)}${createUrlCountry(country)}`, {
@@ -55,7 +55,7 @@ function App() {
       const res = data.ok ? data.json() : Promise.reject('Error en la petición')
       const json = await res
 
-      if(names.length === 1){
+      if (names.length === 1) {
         setData([json])
         return
       }
@@ -74,20 +74,33 @@ function App() {
         <h2 className='app_title'>Predictor de edad</h2>
         Instrucciones:
         <ul>
-          <li className='app_li'>Puedes ingresar cuantos nombres desees separados por comas (',') o un unico nombre</li>
+          <li className='app_li'>Puedes ingresar cuantos nombres desees separados por comas (,) o un unico nombre</li>
           <li className='app_li'>El campo localización es opcional por lo tanto no es necesario que marques el país.</li>
-          <li className='app_li'>Los nombres deben ser unicos, es decir no puedes ingresar: Juan Sebastian</li>
+          <li className='app_li'>Puedes ingresar varios nombres, como: Juan, Sebastian. Pero no Juan Sebastian</li>
+          <li className='app_li'>Los nombres no pueden contener numeros, caracteres especiales ó espacios entre ellos</li>
+          <li className='app_li'>Al elegir una localización se aplicara para todos los nombres</li>
         </ul>
         <form className='app_form' onSubmit={handleSubmit}>
           <main>
             <InputNames names={names} setNames={setNames} />
             <InputCountry setCountry={setCountry} />
-            <input type="submit" value="Predecir edades" />
+            <div className='app_div_submit'>
+              <input type="submit" value="Predecir edades" className='app_submit' />
+            </div>
           </main>
         </form>
-        {
-          data && (<Result data={data} />)
-        }
+        <article className='app_article_results'>
+          <h4 className='app_subtitle'>Resultados:</h4>
+          {
+            data === undefined && (<p>Haz una consulta !!</p>)
+          }
+          {
+            data === null && (<Loader />)
+          }
+          {
+            data && (<Result data={data} />)
+          }
+        </article>
       </section>
     </main>
   )

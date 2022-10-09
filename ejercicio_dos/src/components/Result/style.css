@@ -1,3 +1,19 @@
 .app_form_results{
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.app_form_div-result{
+  border: 1px solid #848484;
+  padding: .3rem .6rem;
+  border-radius: .3rem;
+  min-width: 120px;
+  max-width: 200px;
+  flex-grow: 1;
+}
+
+.app_form_div-result > p {
+  margin: .2rem 0;
 }

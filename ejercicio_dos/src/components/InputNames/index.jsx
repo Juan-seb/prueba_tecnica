@@ -8,7 +8,7 @@ const InputNames = ({ names, setNames }) => {
     value: ''
   })
 
-  const [errorName, setErrorName] = useState(false)
+  const [errorText, setErrorText] = useState("")
 
   const handleChange = (e) => {
 
@@ -22,13 +22,12 @@ const InputNames = ({ names, setNames }) => {
       return
     }
 
-    console.log(regexName.test(name))
-    if (!(regexName.test(name)) || name.length < 2) {
+    if (!(regexName.test(name)) || name.length < 2 || names.find(nameInArray => nameInArray === name)) {
 
-      setErrorName(true)
+      setErrorText("El nombre ingresado esta repetido, tiene caracteres especiales ó contiene espacios")
 
       setInterval(() => {
-        setErrorName(false)
+        setErrorText("")
       }, 5000);
 
       return
@@ -49,12 +48,12 @@ const InputNames = ({ names, setNames }) => {
 
     if (value === '') return
 
-    if (!(regexName.test(value))) {
+    if (!(regexName.test(value)) || value.length < 2 || names.find(nameInArray => nameInArray === value)) {
 
-      setErrorName(true)
+      setErrorText("El nombre ingresado esta repetido, tiene caracteres especiales ó contiene espacios")
 
       setInterval(() => {
-        setErrorName(false)
+        setErrorText("")
       }, 1000);
 
       return
@@ -85,7 +84,7 @@ const InputNames = ({ names, setNames }) => {
           placeholder="Ingresa los nombres"
         />
       </article>
-      {errorName && <p>No se admiten espacios en los nombres, ni caracteres especiales, nombres mayores o iguales a dos caracteres</p>}
+      {!(errorText === "") && <p className='app_form_error-text'>{errorText}</p>}
     </section>
   )
 

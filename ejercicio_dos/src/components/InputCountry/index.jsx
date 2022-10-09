@@ -8,10 +8,10 @@ const InputCountry = ({ setCountry }) => {
   }
 
   return (
-    <article>
-      <h4 className='app_form_subtitle'>Selecciona el pais:</h4>
-      <select name="country" className='app_form_select' placeholder="Hola" onChange={handleChange}>
-        <option value="">Selecciona tu país (Opcional)</option>
+    <article className='app_form_article-select'>
+     {/*  <h4 className='app_form_subtitle'>Selecciona el pais:</h4> */}
+      <select name="country" className='app_form_select-country' placeholder="Hola" onChange={handleChange}>
+        <option value="">Localización: Selecciona tu país</option>
         <option value="">Sin país</option>
         {
           Object.entries(isoCountries).map(country => (
