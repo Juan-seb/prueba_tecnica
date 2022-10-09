@@ -4,8 +4,8 @@ const Result = ({ data }) => {
   console.log(data)
   return (
     <article className='app_form_results'>
-      {data && data.map(result => (
-        <div key={result.count} className='app_form_div-result'>
+      {data && data?.map(result => (
+        <div key={result.name} className='app_form_div-result'>
           <p>Name: {result.name}</p>
           <p>Age: {result.age}</p>
           {

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ListOfNames from '../ListOfNames'
 import './style.css'
 
 const InputNames = ({ names, setNames }) => {
@@ -68,7 +69,12 @@ const InputNames = ({ names, setNames }) => {
 
   return (
     <section>
-      <article className='app_form_article-input-names'>
+      <article className='app_form_article-names'>
+        {
+          names.length > 0 && (
+            <ListOfNames names={names} setNames={setNames} />
+          )
+        }
         <input
           type="text"
           className="app_form_input"
@@ -76,7 +82,7 @@ const InputNames = ({ names, setNames }) => {
           value={inputName.value}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="Ingresa los nombres que quieres predecir"
+          placeholder="Ingresa los nombres"
         />
       </article>
       {errorName && <p>No se admiten espacios en los nombres, ni caracteres especiales, nombres mayores o iguales a dos caracteres</p>}

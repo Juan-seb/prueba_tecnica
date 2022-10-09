@@ -9,13 +9,12 @@ const ListOfNames = ({ names, setNames }) => {
   }
 
   return (
-    <div className="app_form_div-list-names">
-      <p>Lista de nombres:</p>
+    <div className="app_form_list-names">
       {names.map((name) => (
-        <div key={name}>
-          <p>{name}</p>
-          <button onClick={() => handleClick(name)}>
-            borrar
+        <div key={name} className='app_form_data-name'>
+          <p className='app_form_name'>{name}</p>
+          <button onClick={() => handleClick(name)} className='app_form_delete-name-button'>
+            ✖
           </button>
         </div>
       ))}

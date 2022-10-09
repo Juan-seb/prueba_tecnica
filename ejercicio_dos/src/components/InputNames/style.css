@@ -1,13 +1,26 @@
-.app_form_article {
+.app_form_article-names{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: min-content;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  border: 1px solid #848484;
+  border-radius: 5px;
 }
+/* 
+.app_form_article-names:focus{
+  border: 1px solid blue;
+} */
 
-.app_form_input {
+.app_form_input{
   outline: none;
   border: none;
-}
-
-.app_form_article-input-names{
-  
+  font-size: 1rem;
+  height: 30px;
+  min-width: 100px;
+  margin-left: .3rem;
+  padding: .5rem 0;
 }

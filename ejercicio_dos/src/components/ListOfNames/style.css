@@ -1,0 +1,28 @@
+.app_form_list-names {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.app_form_data-name {
+  display: flex;
+  padding: .4rem .6rem .4rem .8rem;
+  height: min-content;
+  background-color: #929191;
+  border-radius: 4rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.app_form_delete-name-button{
+  background: none;
+  outline: none;
+  border: none;
+  height: min-content;
+  cursor: pointer;
+}
+
+.app_form_name{
+  margin: 0;
+  height: min-content;
+}

@@ -40,6 +40,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setData(null)
 
     if (names.length === 0) {
       return
@@ -54,8 +55,13 @@ function App() {
       const res = data.ok ? data.json() : Promise.reject('Error en la petición')
       const json = await res
 
+      if(names.length === 1){
+        setData([json])
+        return
+      }
+
       setData(json)
-      
+
     } catch (error) {
       setError(error)
     }
@@ -75,11 +81,6 @@ function App() {
         <form className='app_form' onSubmit={handleSubmit}>
           <main>
             <InputNames names={names} setNames={setNames} />
-            {
-              names.length > 0 && (
-                <ListOfNames names={names} setNames={setNames} />
-              )
-            }
             <InputCountry setCountry={setCountry} />
             <input type="submit" value="Predecir edades" />
           </main>
