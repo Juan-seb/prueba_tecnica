@@ -2,12 +2,14 @@ import { useState } from 'react'
 import InputCountry from './components/InputCountry'
 import InputNames from './components/InputNames'
 import ListOfNames from './components/ListOfNames'
+import Result from './components/Result'
 import './App.css'
 
 function App() {
 
   const [names, setNames] = useState([])
   const [country, setCountry] = useState('')
+  const [data, setData] = useState(null)
 
   const createUrlNames = (namesToAggregate) => {
 
@@ -52,10 +54,10 @@ function App() {
       const res = data.ok ? data.json() : Promise.reject('Error en la petición')
       const json = await res
 
-      console.log(json)
-
+      setData(json)
+      
     } catch (error) {
-      console.log(error)
+      setError(error)
     }
 
   }
@@ -82,6 +84,9 @@ function App() {
             <input type="submit" value="Predecir edades" />
           </main>
         </form>
+        {
+          data && (<Result data={data} />)
+        }
       </section>
     </main>
   )

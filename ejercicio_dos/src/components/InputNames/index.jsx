@@ -22,13 +22,13 @@ const InputNames = ({ names, setNames }) => {
     }
 
     console.log(regexName.test(name))
-    if (!(regexName.test(name))) {
+    if (!(regexName.test(name)) || name.length < 2) {
 
       setErrorName(true)
 
       setInterval(() => {
         setErrorName(false)
-      }, 1000);
+      }, 5000);
 
       return
     }
@@ -79,7 +79,7 @@ const InputNames = ({ names, setNames }) => {
           placeholder="Ingresa los nombres que quieres predecir"
         />
       </article>
-      {errorName && <p>No se admiten campos vacios, ni espacios, ni caracteres especiales</p>}
+      {errorName && <p>No se admiten espacios en los nombres, ni caracteres especiales, nombres mayores o iguales a dos caracteres</p>}
     </section>
   )
 
