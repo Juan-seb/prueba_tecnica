@@ -1,3 +1,5 @@
+import './style.css'
+
 const ListOfNames = ({ names, setNames }) => {
 
   const handleClick = (name) => {
@@ -7,7 +9,7 @@ const ListOfNames = ({ names, setNames }) => {
   }
 
   return (
-    <article>
+    <div className="app_form_div-list-names">
       <p>Lista de nombres:</p>
       {names.map((name) => (
         <div key={name}>
@@ -17,7 +19,7 @@ const ListOfNames = ({ names, setNames }) => {
           </button>
         </div>
       ))}
-    </article>
+    </div>
   )
 
 }

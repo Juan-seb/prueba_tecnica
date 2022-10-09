@@ -7,11 +7,56 @@ import './App.css'
 function App() {
 
   const [names, setNames] = useState([])
-  const [country, setCountry] = useState("")
+  const [country, setCountry] = useState('')
 
-  const handleSubmit = (e) => {
+  const createUrlNames = (namesToAggregate) => {
+
+    let url = ''
+
+    if (!(namesToAggregate.length > 1)) {
+      url = `name=${namesToAggregate[0]}`
+
+      return url
+    }
+
+    namesToAggregate.forEach(name => {
+      url += `name[]=${name}&`
+    })
+
+    return url.substring(0, url.length - 1)
+  }
+
+  const createUrlCountry = (countryToAggregateToUrl) => {
+
+    if (countryToAggregateToUrl === '') {
+      return ''
+    }
+
+    return `&country_id=${countryToAggregateToUrl}`
+
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
+    if (names.length === 0) {
+      return
+    }
+
+    try {
+      const data = await fetch(`https://api.agify.io?${createUrlNames(names)}${createUrlCountry(country)}`, {
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      const res = data.ok ? data.json() : Promise.reject('Error en la petición')
+      const json = await res
+
+      console.log(json)
+
+    } catch (error) {
+      console.log(error)
+    }
 
   }
 
@@ -33,7 +78,8 @@ function App() {
                 <ListOfNames names={names} setNames={setNames} />
               )
             }
-            <InputCountry setCountry={setCountry}/>
+            <InputCountry setCountry={setCountry} />
+            <input type="submit" value="Predecir edades" />
           </main>
         </form>
       </section>

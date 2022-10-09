@@ -4,5 +4,10 @@
 }
 
 .app_form_input {
+  outline: none;
+  border: none;
+}
+
+.app_form_article-input-names{
   
 }

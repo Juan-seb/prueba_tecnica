@@ -68,8 +68,7 @@ const InputNames = ({ names, setNames }) => {
 
   return (
     <section>
-      <article className='app_form_article'>
-        <label htmlFor="input_names">Ingresa aqui los nombres:</label>
+      <article className='app_form_article-input-names'>
         <input
           type="text"
           className="app_form_input"
@@ -77,6 +76,7 @@ const InputNames = ({ names, setNames }) => {
           value={inputName.value}
           onChange={handleChange}
           onBlur={handleBlur}
+          placeholder="Ingresa los nombres que quieres predecir"
         />
       </article>
       {errorName && <p>No se admiten campos vacios, ni espacios, ni caracteres especiales</p>}

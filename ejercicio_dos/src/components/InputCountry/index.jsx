@@ -1,7 +1,29 @@
-const InputCountry = (setCountry) => {
+import { isoCountries } from './iso_country'
+import './style.css'
+
+const InputCountry = ({ setCountry }) => {
+
+  const handleChange = (e) => {
+    setCountry(e.target.value)
+  }
 
   return (
-    <p>Aqui viene el codigo del país</p>
+    <article>
+      <h4 className='app_form_subtitle'>Selecciona el pais:</h4>
+      <select name="country" className='app_form_select' id="" onChange={handleChange}>
+        <option value="">Sin país</option>
+        {
+          Object.entries(isoCountries).map(country => (
+            <option
+              value={country[0]}
+              key={country[0]}
+            >
+              {country[0]} - {country[1]}
+            </option>
+          ))
+        }
+      </select>
+    </article>
   )
 
 }
