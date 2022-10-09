@@ -11,6 +11,8 @@ function App() {
   const [country, setCountry] = useState('')
   const [data, setData] = useState(undefined)
 
+  //* Function to create the part of the url in the request that contain all names to request
+  //* Receive an array of names 
   const createUrlNames = (namesToAggregate) => {
 
     let url = ''
@@ -28,6 +30,8 @@ function App() {
     return url.substring(0, url.length - 1)
   }
 
+  //* Function to create the part of the url in the request that contain the code of the country
+  //* Receive an string with the code of the country 
   const createUrlCountry = (countryToAggregateToUrl) => {
 
     if (countryToAggregateToUrl === '') {
@@ -41,12 +45,16 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    //* Verify that the user entered data
     if (names.length === 0) {
       return
     }
+
     setData(null)
 
     try {
+
+      //* Request
       const data = await fetch(`https://api.agify.io?${createUrlNames(names)}${createUrlCountry(country)}`, {
         headers: {
           'Content-type': 'application/json'

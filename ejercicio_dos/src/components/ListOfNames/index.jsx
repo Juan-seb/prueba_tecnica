@@ -4,6 +4,7 @@ const ListOfNames = ({ names, setNames }) => {
 
   const handleClick = (name) => {
 
+    //* Filter the array "names" to delete the name clicked by the user
     const newListOfNames = names.filter(nameInArray => nameInArray !== name)
     setNames(newListOfNames)
   }

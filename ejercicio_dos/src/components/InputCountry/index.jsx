@@ -9,7 +9,6 @@ const InputCountry = ({ setCountry }) => {
 
   return (
     <article className='app_form_article-select'>
-     {/*  <h4 className='app_form_subtitle'>Selecciona el pais:</h4> */}
       <select name="country" className='app_form_select-country' placeholder="Hola" onChange={handleChange}>
         <option value="">Localización: Selecciona tu país</option>
         <option value="">Sin país</option>
